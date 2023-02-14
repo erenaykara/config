@@ -173,11 +173,3 @@ lualine.setup(config)
 -- Don't show --MODE-- and position
 vim.api.nvim_command("set noru")
 vim.api.nvim_command("set nosmd")
-
--- Clear command line on cursor move
-local clear_group = vim.api.nvim_create_augroup("clear_command_line_group", { clear = true })
-
-vim.api.nvim_create_autocmd(
-    { "CursorMoved", "CursorMovedI", "TextChanged", "TextChangedP" },
-    { group = clear_group, callback = function() print(" ") end }
-)
