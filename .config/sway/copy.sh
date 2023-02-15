@@ -5,5 +5,5 @@ app_id=$(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true) 
 
 # don't copy from windows that have the app id "org.keepassxc.KeePassXC"
 if [ $app_id != '"org.keepassxc.KeePassXC"' ]; then
-    clipman store --max-items=300 "$@"
+    clipman store --max-items=5000 "$@"
 fi
