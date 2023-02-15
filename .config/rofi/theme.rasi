@@ -4,35 +4,34 @@ configuration {
 
 * {
     /* Theme settings */
-    highlight: bold italic;
+    highlight: bold italic #FEE9AA;
     scrollbar: true;
 
     /* Gruvbox dark colors */
-    gruvbox-dark-bg0:          #282828;
-    gruvbox-dark-bg0-soft:     #32302f;
     gruvbox-dark-bg3:          #665c54;
-    gruvbox-dark-fg0:          #fbf1c7;
-    gruvbox-dark-fg1:          #ebdbb2;
     gruvbox-dark-red-dark:     #cc241d;
     gruvbox-dark-red-light:    #fb4934;
     gruvbox-dark-yellow-dark:  #d79921;
     gruvbox-dark-yellow-light: #fabd2f;
-    gruvbox-dark-gray:         #a89984;
+
+    /* Foo */
+    entry-foreground: #FEE9AA;
+    prompt-foreground: #F5B2B2;
 
     /* Theme colors */
-    background:                  @gruvbox-dark-bg0;
+    background:                  #333333;
     background-color:            @background;
-    foreground:                  @gruvbox-dark-fg1;
-    border-color:                @gruvbox-dark-gray;
+    foreground:                  #CBE7CC;
+    border-color:                #a1552f;
     separatorcolor:              @border-color;
     scrollbar-handle:            @border-color;
 
     normal-background:           @background;
     normal-foreground:           @foreground;
-    alternate-normal-background: @gruvbox-dark-bg0-soft;
+    alternate-normal-background: #383838;
     alternate-normal-foreground: @foreground;
-    selected-normal-background:  @gruvbox-dark-bg3;
-    selected-normal-foreground:  @gruvbox-dark-fg0;
+    selected-normal-background:  #505050;
+    selected-normal-foreground:  #C3EEE9;
 
     active-background:           @gruvbox-dark-yellow-dark;
     active-foreground:           @background;
@@ -151,12 +150,16 @@ inputbar {
     children:   [ prompt, textbox-prompt-sep, entry, case-indicator ];
 }
 
+prompt {
+    spacing:      0;
+    text-color:   @prompt-foreground;
+}
+
 case-indicator,
 entry,
-prompt,
 button {
     spacing:      0;
-    text-color:   @normal-foreground;
+    text-color:   @entry-foreground;
     blink:        false;
 }
 
