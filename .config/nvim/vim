@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+"""Edit a file in the host nvim instance."""
+"""This file is supposed to be placed in /usr/bin/ and used to start neovim instead of the nvim command"""
+"""Remember to run `chmod +x` on this file"""
+
+import os
+import sys
+import time
+
+from neovim import attach
+
+# Remove this script from the args.
+args = sys.argv[1:]
+
+# Try to get the socket of a running Neovim instance.
+addr = os.environ.get("NVIM", None)
+
+# If there is no other instance of Neovim running, start a new one.
+if not addr:
+    os.execvp('nvim', ['nvim'] + args)
+
+# Attach to the existing Neovim instance.
+nvim = attach("socket", path=addr)
+
+# If we didn't provide any arguments but are connected to socket, set a default file name.
+default_file = False
+if not args:
+    args = ["new_file"]
+    default_file = True
+
+# Open all arguments passed to the script as files in our new instance.
+# TODO: This could use some additional parsing to make sure we don't open flags as files.
+nvim.vars['files_to_edit'] = list(reversed(args))
+for _ in args:
+    nvim.command('exe "split ".remove(g:files_to_edit, 0)')
+
+
+def find_buffer(name):
+    # Get a list of all buffers.
+    buffers = nvim.api.list_bufs()
+
+    for buffer in buffers:
+        buffer_name = nvim.api.buf_get_name(buffer)
+
+        if buffer_name == name:
+            return True
+
+    return False
+
+# Halt the script until we are done editing the file.
+if not default_file:
+    while find_buffer(args[0]):
+        time.sleep(0.2)

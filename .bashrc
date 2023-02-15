@@ -7,7 +7,7 @@ rm -d -f Desktop Downloads
 . "$HOME/.cargo/env"
 
 # set environment variables
-export EDITOR=nvim
+export EDITOR=vim
 export BROWSER=qutebrowser
 
 # open fish shell
