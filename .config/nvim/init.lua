@@ -23,10 +23,20 @@ rust_tools.setup({
       border = "none",
     },
 
+    tools = {
+        on_initialized = function()
+            print("rust-analyzer started")
+        end
+    },
+
     -- Language server
     server = {
 
-        on_attach = function(_, buffer_number)
+        on_attach = function(client, buffer_number)
+            -- Fix Treesitter highlighting breaking when rust-analyzer loads
+            -- Maybe temporary
+            client.server_capabilities.semanticTokensProvider = nil
+
             local buffer_options = { noremap = true, silent = true, buffer = buffer_number }
             set_lsp_bindings(buffer_options)
             set_rust_tools_bindings(rust_tools, buffer_options)
@@ -219,6 +229,18 @@ local telescope_config = {
             },
         },
     },
+    pickers = {
+        buffers = {
+            mappings = {
+                i = {
+                    ["<C-d>"] = require('telescope.actions').delete_buffer
+                },
+                n = {
+                    ["<C-d>"] = require('telescope.actions').delete_buffer
+                }
+            }
+        }
+    }
 }
 
 -- Other
@@ -228,21 +250,11 @@ require('telescope').setup(telescope_config)
 require('hop').setup()
 require('todo-comments').setup()
 require('trouble').setup()
-require('hlargs').setup()
 require('impatient')
 require('glow').setup()
+require('hlargs').setup()
 require('crates').setup()
-require('vgit').setup({
-    -- hopefully temporary
-    settings = {
-        project_diff_preview = {
-            keymaps = {
-                selection_down = '<down>',
-                selection_up = '<up>',
-            },
-        },
-    },
-})
+require('vgit').setup()
 
 -- Vim settings
 vim.opt.signcolumn = "yes"
@@ -259,6 +271,10 @@ vim.opt.whichwrap = "<,>"
 vim.opt.list = true
 vim.opt.swapfile = false
 vim.opt.scrolloff = 8
+vim.opt.confirm = true
+
+-- Custom command
+vim.api.nvim_create_user_command("D", "bd", { desc = "remapped :bd for deleting buffers" })
 
 -- Only show cursor line in the focused window
 local cursorline_group = vim.api.nvim_create_augroup("cursorline_group", { clear = true })
@@ -270,3 +286,14 @@ vim.api.nvim_create_autocmd("WinEnter",
 vim.api.nvim_create_autocmd("WinLeave",
     { group = cursorline_group, callback = function() vim.wo.cursorline = false end }
 )
+
+-- Disable line numbers and signs for terminal buffers
+local terminal_group = vim.api.nvim_create_augroup("terminal_group", { clear = true })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = terminal_group,
+    callback = function()
+        vim.opt_local.number = false
+        vim.opt_local.signcolumn = "no"
+    end
+})

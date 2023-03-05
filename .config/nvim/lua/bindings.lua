@@ -15,8 +15,58 @@ vim.keymap.set("n", "<C-b>", ":b#<cr>", { silent = true })
 vim.keymap.set("n", "<C-z>", ":bw<cr>", { silent = true })
 
 -- Terminal
-vim.keymap.set('n', "<C-t>", ":edit term://fish<cr>:keepalt file ")
-vim.keymap.set('t', "<esc>", "<C-\\><C-n>")
+vim.keymap.set("n", "<C-t>", ":edit term://fish<cr>:keepalt file ")
+vim.keymap.set("t", "<S-esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<esc>", function()
+    local keys
+
+    if vim.api.nvim_buf_get_name(0):sub(-3) == "git" then
+        keys = '<esc>'
+    else
+        keys = '<C-\\><C-n>'
+    end
+
+    sequence = vim.api.nvim_replace_termcodes(keys, true, false, true)
+    vim.api.nvim_feedkeys(sequence, 'n', true)
+end)
+
+vim.keymap.set("n", "<C-g>", function()
+
+    -- Currently in the git buffer
+    if vim.api.nvim_buf_get_name(0):sub(-3) == "git" then
+        sequence = vim.api.nvim_replace_termcodes(":b#<cr>", true, false, true)
+        vim.api.nvim_feedkeys(sequence, 'n', true)
+        return
+    end
+
+    -- Check if a git buffer already exists
+    for k, buffer in pairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_get_name(buffer):sub(-3) == "git" then
+            vim.api.nvim_set_current_buf(buffer)
+            vim.api.nvim_command("startinsert")
+            return
+        end
+    end
+
+    -- Create new terminal instance
+    sequence = vim.api.nvim_replace_termcodes(":edit term://fish<cr>:keepalt file git<cr>:set nobl<cr>ilazygit<cr>", true, false, true)
+    vim.api.nvim_feedkeys(sequence, 'n', true)
+
+    --buffer = vim.api.nvim_create_buf(false, true)
+    --vim.api.nvim_open_term(buffer, )
+    --vim.api.nvim_buf_set_name(buffer, "git")
+    --vim.api.nvim_command("startinsert")
+    --// start command lazygit
+
+    -- remap <esc> just for this buffer
+end)
+
+vim.keymap.set("t", "<C-g>", function()
+    if vim.api.nvim_buf_get_name(0):sub(-3) == "git" then
+        sequence = vim.api.nvim_replace_termcodes("<C-\\><C-n>:b#<cr>", true, false, true)
+        vim.api.nvim_feedkeys(sequence, 'n', true)
+    end
+end)
 
 -- Telescope
 vim.keymap.set("n", "lf", ":Telescope find_files<cr>", { silent = true })
