@@ -72,14 +72,14 @@ return require('packer').startup(function()
         requires = "kyazdani42/nvim-web-devicons",
     }
 
+    -- Theme
+    use 've5li/monokai.nvim'
+
     -- Highlight arguments
     use {
         'm-demare/hlargs.nvim',
         requires = { 'nvim-treesitter/nvim-treesitter' }
     }
-
-    -- Theme
-    use 'vE5li/monokai.nvim'
 
     -- Multicursor
     use 'mg979/vim-visual-multi'

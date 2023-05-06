@@ -20,7 +20,7 @@ rust_tools.setup({
 
     -- Disable border on popups
     hover_actions = {
-      border = "none",
+        border = "none",
     },
 
     tools = {
@@ -44,16 +44,20 @@ rust_tools.setup({
 
         settings = {
             ["rust-analyzer"] = {
-                check = {
-                    checkOnSave = true,
+                checkOnSave = {
+                    enable = true,
                     command = "clippy",
-                    features = "all",
                 },
                 cargo = {
-                    features = "all",
+                    buildScripts = {
+                        enable = true,
+                    },
+                },
+                procMacro = {
+                    enable = true
                 },
             },
-        }
+        },
     },
 
     -- Debugging
@@ -92,9 +96,9 @@ local sign = function(opts)
 end
 
 -- Diagnostics symbols
-sign({name = 'DiagnosticSignError', text = ''})
-sign({name = 'DiagnosticSignWarn', text = ''})
-sign({name = 'DiagnosticSignHint', text = ''})
+sign({name = 'DiagnosticSignError', text = '⛌'})
+sign({name = 'DiagnosticSignWarn', text = '⚠'})
+sign({name = 'DiagnosticSignHint', text = '!'})
 sign({name = 'DiagnosticSignInfo', text = ''})
 
 -- Diagnostics configuration
