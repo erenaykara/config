@@ -17,7 +17,7 @@ input * repeat_delay 120
 input * repeat_rate 40
 
 # terminal emulator
-bindsym $mod+m exec $terminal
+bindsym $mod+m exec $terminal -e "/home/.config/sway/shell.sh"
 bindsym $mod+$alt+m exec $terminal --app-id "floating"
 
 # program launcher
