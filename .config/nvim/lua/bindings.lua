@@ -19,7 +19,7 @@ vim.keymap.set("n", "<C-b>", ":b#<cr>", { silent = true })
 vim.keymap.set("n", "<C-z>", ":bw<cr>", { silent = true })
 
 -- Terminal
-vim.keymap.set("n", "<C-t>", ":edit term://fish<cr>:keepalt file ")
+vim.keymap.set("n", "<C-t>", ":term<cr>:keepalt file ")
 vim.keymap.set("t", "<S-esc>", "<C-\\><C-n>")
 vim.keymap.set("t", "<C-y>", function()
     local channel_id = vim.b.terminal_job_id
@@ -71,7 +71,7 @@ vim.keymap.set("n", "<C-g>", function()
     end
 
     -- Create new terminal instance
-    sequence = vim.api.nvim_replace_termcodes(":edit term://fish<cr>:keepalt file git<cr>:set nobl<cr>ilazygit<cr>", true, false, true)
+    sequence = vim.api.nvim_replace_termcodes(":term<cr>:keepalt file git<cr>:set nobl<cr>ilazygit<cr>", true, false, true)
     vim.api.nvim_feedkeys(sequence, 'n', true)
 
     --buffer = vim.api.nvim_create_buf(false, true)
