@@ -6,6 +6,10 @@ vim.keymap.set("n", "<C-q>", function() vim.api.nvim_command('let @/ = ""') end)
 vim.keymap.set("v", "s", '"ay:s/<C-r>a/')
 vim.keymap.set("v", "S", '"ay:%s/<C-r>a/')
 
+-- Faster cursor movement
+vim.keymap.set("n", "<S-Up>", '10k')
+vim.keymap.set("n", "<S-Down>", '10j')
+
 -- Switching windows
 vim.keymap.set("n", "<C-i>", "<C-w><C-l>", { silent = true })
 vim.keymap.set("n", "<C-n>", "<C-w><C-h>", { silent = true })
