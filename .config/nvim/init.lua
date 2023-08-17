@@ -52,6 +52,7 @@ rust_tools.setup({
                     buildScripts = {
                         enable = true,
                     },
+                    allFeatures = true,
                 },
                 procMacro = {
                     enable = true
