@@ -104,10 +104,10 @@ vim.keymap.set("n", "<C-p>", ":NvimTreeToggle<cr>", { silent = true })
 
 -- Tagbar
 vim.g.tagbar_map_nexttag = "" -- Unbind so that switching windows works
-vim.keymap.set("n", "Ty", ":TagbarToggle<cr>", { silent = true })
+vim.keymap.set("n", "lb", ":TagbarToggle<cr>", { silent = true })
 
 -- Trouble
-vim.keymap.set("n", "Tp", ":TroubleToggle<cr>", { silent = true })
+vim.keymap.set("n", "lp", ":TroubleToggle<cr>", { silent = true })
 
 -- Diagnostics
 vim.keymap.set("n", "<C-d>", function() vim.diagnostic.open_float(nil, { focusable = false }) end)
