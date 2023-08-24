@@ -201,6 +201,7 @@ local treesitter_config = {
 local tree_congig = {
     update_focused_file = {
         enable = true,
+        update_root = true,
     },
     view = {
         side = "right"

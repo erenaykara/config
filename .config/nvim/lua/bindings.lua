@@ -11,34 +11,16 @@ vim.keymap.set("n", "<S-Up>", '10k')
 vim.keymap.set("n", "<S-Down>", '10j')
 
 -- Switching windows
-vim.keymap.set("n", "<C-i>", "<C-w><C-l>", { silent = true })
-vim.keymap.set("n", "<C-n>", "<C-w><C-h>", { silent = true })
-vim.keymap.set("n", "<C-u>", "<C-w><C-k>", { silent = true })
-vim.keymap.set("n", "<C-e>", "<C-w><C-j>", { silent = true })
+vim.keymap.set("n", "gi", "<C-w><C-l>", { silent = true })
+vim.keymap.set("n", "gn", "<C-w><C-h>", { silent = true })
+vim.keymap.set("n", "gu", "<C-w><C-k>", { silent = true })
+vim.keymap.set("n", "ge", "<C-w><C-j>", { silent = true })
 vim.keymap.set("n", "<C-b>", ":b#<cr>", { silent = true })
 vim.keymap.set("n", "<C-z>", ":bw<cr>", { silent = true })
 
 -- Terminal
 vim.keymap.set("n", "<C-t>", ":term<cr>:keepalt file ")
 vim.keymap.set("t", "<S-esc>", "<C-\\><C-n>")
-vim.keymap.set("t", "<C-y>", function()
-    local channel_id = vim.b.terminal_job_id
-    vim.api.nvim_chan_send(channel_id, "echo \"PWMMRK:$(pwd)\"\n")
-
-    local timer = vim.defer_fn(function()
-        local text = vim.api.nvim_buf_get_lines(0, 0, -1, true)
-
-        for key, value in ipairs(text) do
-            if value ~= "" and value:find("PWMMRK:", 1, true) == 1 then
-                local directory = value:sub(string.len("PWMMRK:") + 1, -1)
-                vim.api.nvim_set_current_dir(directory)
-                vim.api.nvim_chan_send(channel_id, "clear\n")
-                vim.cmd("stopinsert")
-                return
-            end
-        end
-    end, 50)
-end)
 vim.keymap.set("t", "<esc>", function()
     local keys
 
