@@ -88,12 +88,32 @@ require('lspconfig').tsserver.setup({
 })
 
 -- Lua language server
-require('lspconfig').sumneko_lua.setup({
+require('lspconfig').lua_ls.setup {
     on_attach = function(_, buffer_number)
         local buffer_options = { noremap = true, silent = true, buffer = buffer_number }
         set_lsp_bindings(buffer_options)
     end,
-})
+    settings = {
+        Lua = {
+            runtime = {
+                version = 'LuaJIT',
+            },
+            diagnostics = {
+                globals = {
+                    'vim',
+                    'require',
+                    'use',
+                },
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+            },
+            telemetry = {
+                enable = false,
+            },
+        },
+    },
+}
 
 -- LSP Diagnostics Options Setup
 local sign = function(opts)
