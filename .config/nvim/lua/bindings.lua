@@ -30,7 +30,7 @@ vim.keymap.set("t", "<esc>", function()
         keys = '<C-\\><C-n>'
     end
 
-    sequence = vim.api.nvim_replace_termcodes(keys, true, false, true)
+    local sequence = vim.api.nvim_replace_termcodes(keys, true, false, true)
     vim.api.nvim_feedkeys(sequence, 'n', true)
 end)
 
@@ -38,7 +38,7 @@ vim.keymap.set("n", "<C-g>", function()
 
     -- Currently in the git buffer
     if vim.api.nvim_buf_get_name(0):sub(-3) == "git" then
-        sequence = vim.api.nvim_replace_termcodes(":b#<cr>", true, false, true)
+        local sequence = vim.api.nvim_replace_termcodes(":b#<cr>", true, false, true)
         vim.api.nvim_feedkeys(sequence, 'n', true)
         return
     end
@@ -53,7 +53,7 @@ vim.keymap.set("n", "<C-g>", function()
     end
 
     -- Create new terminal instance
-    sequence = vim.api.nvim_replace_termcodes(":term<cr>:keepalt file git<cr>:set nobl<cr>ilazygit<cr>", true, false, true)
+    local sequence = vim.api.nvim_replace_termcodes(":term<cr>:keepalt file git<cr>:set nobl<cr>ilazygit<cr>", true, false, true)
     vim.api.nvim_feedkeys(sequence, 'n', true)
 
     --buffer = vim.api.nvim_create_buf(false, true)
@@ -67,7 +67,7 @@ end)
 
 vim.keymap.set("t", "<C-g>", function()
     if vim.api.nvim_buf_get_name(0):sub(-3) == "git" then
-        sequence = vim.api.nvim_replace_termcodes("<C-\\><C-n>:b#<cr>", true, false, true)
+        local sequence = vim.api.nvim_replace_termcodes("<C-\\><C-n>:b#<cr>", true, false, true)
         vim.api.nvim_feedkeys(sequence, 'n', true)
     end
 end)
