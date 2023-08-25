@@ -163,7 +163,7 @@ cmp.setup({
         { name = 'buffer',                              -- source current buffer
             keyword_length = 2,
             option = {
-                cases = { "snake", "pascal" }
+                cases = { "snake", "pascal", "macro", "camel" }
             }
         },
         { name = 'vsnip', keyword_length = 2 },         -- nvim-cmp source for vim-vsnip
