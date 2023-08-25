@@ -87,6 +87,14 @@ require('lspconfig').tsserver.setup({
     end,
 })
 
+-- Lua language server
+require('lspconfig').sumneko_lua.setup({
+    on_attach = function(_, buffer_number)
+        local buffer_options = { noremap = true, silent = true, buffer = buffer_number }
+        set_lsp_bindings(buffer_options)
+    end,
+})
+
 -- LSP Diagnostics Options Setup
 local sign = function(opts)
     vim.fn.sign_define(opts.name, {
