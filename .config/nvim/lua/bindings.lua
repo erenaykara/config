@@ -79,6 +79,7 @@ vim.keymap.set("n", "ls", ":Telescope buffers<cr>", { silent = true })
 vim.keymap.set("n", "lr", ":Telescope treesitter<cr>", { silent = true })
 vim.keymap.set("n", "lm", ":Telescope git_branches<cr>", { silent = true })
 vim.keymap.set("n", "lM", ":lua require('telescope.builtin').man_pages({ sections={ 'ALL' } })<cr>", { silent = true })
+vim.keymap.set("n", "lh", ":lua require('telescope.builtin').help_tags()<cr>", { silent = true })
 vim.keymap.set("n", "lt", ":TodoTelescope<cr>", { silent = true })
 
 -- Nvim Tree
