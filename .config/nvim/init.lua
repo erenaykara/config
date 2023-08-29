@@ -226,7 +226,7 @@ local treesitter_config = {
 }
 
 -- Nvim Tree config
-local tree_congig = {
+local tree_config = {
     update_focused_file = {
         enable = true,
         update_root = true,
@@ -279,7 +279,7 @@ local telescope_config = {
 
 -- Other
 require('nvim-treesitter.configs').setup(treesitter_config)
-require("nvim-tree").setup(tree_congig)
+require("nvim-tree").setup(tree_config)
 require('telescope').setup(telescope_config)
 require('hop').setup()
 require('todo-comments').setup()
