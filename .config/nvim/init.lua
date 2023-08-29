@@ -331,3 +331,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
         vim.opt_local.signcolumn = "no"
     end
 })
+
+-- Function for inspecting tables
+P = function (value)
+    print(vim.inspect(value))
+    return value
+end
