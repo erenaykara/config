@@ -44,7 +44,7 @@ vim.keymap.set("n", "<C-g>", function()
     end
 
     -- Check if a git buffer already exists
-    for k, buffer in pairs(vim.api.nvim_list_bufs()) do
+    for _, buffer in pairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_get_name(buffer):sub(-3) == "git" then
             vim.api.nvim_set_current_buf(buffer)
             vim.api.nvim_command("startinsert")
