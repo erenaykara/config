@@ -35,7 +35,6 @@ vim.keymap.set("t", "<esc>", function()
 end)
 
 vim.keymap.set("n", "<C-g>", function()
-
     -- Currently in the git buffer
     if vim.api.nvim_buf_get_name(0):sub(-3) == "git" then
         local sequence = vim.api.nvim_replace_termcodes(":b#<cr>", true, false, true)
@@ -53,7 +52,8 @@ vim.keymap.set("n", "<C-g>", function()
     end
 
     -- Create new terminal instance
-    local sequence = vim.api.nvim_replace_termcodes(":term<cr>:keepalt file git<cr>:set nobl<cr>ilazygit<cr>", true, false, true)
+    local sequence = vim.api.nvim_replace_termcodes(":term<cr>:keepalt file git<cr>:set nobl<cr>ilazygit<cr>", true,
+        false, true)
     vim.api.nvim_feedkeys(sequence, 'n', true)
 
     --buffer = vim.api.nvim_create_buf(false, true)
@@ -95,19 +95,11 @@ vim.keymap.set("n", "lp", ":TroubleToggle<cr>", { silent = true })
 -- Diagnostics
 vim.keymap.set("n", "<C-d>", function() vim.diagnostic.open_float(nil, { focusable = false }) end)
 
--- Vim visual multi
-vim.g.VM_mouse_mappings = 1
-vim.g.VM_default_mappings = 0
-vim.g.VM_maps = {
-    ['Find Under'] = '<C-h>',
-    ['Visual Add'] = '<C-h>',
-    ["Add Cursor At Pos"] = '<C-k>',
-    ['Find Subword Under'] = '<C-h>',
-    ["Add Cursor Down"] = 'E',
-    ["Add Cursor Up"] = 'U',
-    ["Undo"] = 'u',
-    ["Redo"] = '<C-r>',
-}
+-- Better multi
+vim.keymap.set("v", "<C-e>", "<Esc>:MultiVisualMode<cr>", { silent = true });
+vim.keymap.set("n", "<C-e>", "viwo<Esc>:MultiVisualMode<cr>", { silent = true });
+vim.keymap.set("n", "U", ":MultiNormalMode<cr>U", { silent = true });
+vim.keymap.set("n", "E", ":MultiNormalMode<cr>E", { silent = true });
 
 -- Git
 vim.keymap.set("n", "mu", ":VGit hunk_up<cr>", { silent = true })
@@ -126,7 +118,6 @@ vim.keymap.set("n", "mP", ":VGit project_diff_preview<cr>", { silent = true })
 
 -- LSP
 function set_lsp_bindings(buffer_options)
-
     -- Goto
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buffer_options)
     vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, buffer_options)
@@ -137,12 +128,10 @@ function set_lsp_bindings(buffer_options)
     -- Refactoring
     vim.keymap.set('n', 'rn', vim.lsp.buf.rename, buffer_options)
     vim.keymap.set('n', 'rf', vim.lsp.buf.format, buffer_options)
-
 end
 
 -- Rust Tools
 function set_rust_tools_bindings(rust_tools, buffer_options)
-
     -- Hover actions
     vim.keymap.set("n", "<C-a>", rust_tools.hover_actions.hover_actions, buffer_options)
     vim.keymap.set("n", "<C-s>", rust_tools.code_action_group.code_action_group, buffer_options)
@@ -150,5 +139,4 @@ function set_rust_tools_bindings(rust_tools, buffer_options)
     -- Goto
     vim.keymap.set('n', 'gp', ":RustParentModule<cr>", { silent = true })
     vim.keymap.set('n', 'ge', ":RustOpenExternalDocs<cr>", { silent = true })
-
 end

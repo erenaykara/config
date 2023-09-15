@@ -100,14 +100,34 @@ local mode_color = {
     ['r?'] = colors.cyan,
     ['!'] = colors.red,
     t = colors.red,
+    nt = colors.white,
+
+    MultiNormal = colors.yellow,
+    MultiVisual = colors.orange,
+    MultiInsert = colors.green,
 }
+
+local function get_mode_name()
+    local name = vim.api.nvim_get_mode().mode
+
+    if vim.g.libmodalActiveModeName then
+        name = vim.g.libmodalActiveModeName
+    end
+
+    return name
+end
+
+local function get_mode_color()
+    return mode_color[get_mode_name()]
+end
 
 ins_left {
     function()
         return '▊'
     end,
     color = function()
-        return { fg = mode_color[vim.fn.mode()] }
+        local color = get_mode_color()
+        return { fg = color }
     end,
     padding = { left = 0, right = 1 }, -- We don't need space before this
 }
@@ -117,14 +137,16 @@ ins_left {
     path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
     cond = conditions.buffer_not_empty,
     color = function()
-        return { fg = mode_color[vim.fn.mode()], gui = 'bold' }
+        local color = get_mode_color()
+        return { fg = color, gui = 'bold' }
     end,
 }
 
 ins_left {
     'location',
     color = function()
-        return { fg = mode_color[vim.fn.mode()], gui = 'bold' }
+        local color = get_mode_color()
+        return { fg = color, gui = 'bold' }
     end,
 }
 
@@ -173,3 +195,8 @@ lualine.setup(config)
 -- Don't show --MODE-- and position
 vim.api.nvim_command("set noru")
 vim.api.nvim_command("set nosmd")
+
+-- Update the statusline when entering a libmodal mode
+vim.api.nvim_create_autocmd('ModeChanged', { callback = function()
+  require('lualine').refresh { scope = 'window',  place = {'statusline'} }
+end })
