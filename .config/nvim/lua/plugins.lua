@@ -75,7 +75,7 @@ return require('packer').startup(function()
     }
 
     -- Theme
-    use 've5li/monokai.nvim'
+    use 'tanvirtin/monokai.nvim'
 
     -- Highlight arguments
     use {
