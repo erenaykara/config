@@ -53,12 +53,6 @@ return require('packer').startup(function()
         requires = 'nvim-lua/plenary.nvim'
     }
 
-    -- Navigating in file
-    use {
-        'phaazon/hop.nvim',
-        branch = 'v2'
-    }
-
     -- Tagbar
     use 'preservim/tagbar'
 

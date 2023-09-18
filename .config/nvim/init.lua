@@ -173,7 +173,6 @@ local telescope_config = {
 require('nvim-treesitter.configs').setup(treesitter_config)
 require("nvim-tree").setup(tree_config)
 require('telescope').setup(telescope_config)
-require('hop').setup()
 require('todo-comments').setup()
 require('trouble').setup()
 require('impatient')
