@@ -1,109 +1,124 @@
-return require('packer').startup(function()
-    -- Packer so that it can update itself
-    use 'wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+local plugins = {
     -- Language server
-    use 'williamboman/mason.nvim'
-    use 'williamboman/mason-lspconfig.nvim'
-    use 'neovim/nvim-lspconfig'
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
 
     -- Rust
-    use 'simrat39/rust-tools.nvim'
-    use 'timonv/vim-cargo'
+    'simrat39/rust-tools.nvim',
+    'timonv/vim-cargo',
 
     -- Completion framework:
-    use 'hrsh7th/nvim-cmp'
+    'hrsh7th/nvim-cmp',
 
     -- LSP completion source:
-    use 'hrsh7th/cmp-nvim-lsp'
+    'hrsh7th/cmp-nvim-lsp',
 
     -- Useful completion sources:
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-nvim-lsp-signature-help'
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/vim-vsnip'
-    use 've5li/cmp-buffer'
+    'hrsh7th/cmp-nvim-lua',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/cmp-path',
+    'hrsh7th/vim-vsnip',
+    've5li/cmp-buffer',
 
     -- Treesitter
-    use 'nvim-treesitter/nvim-treesitter'
+    'nvim-treesitter/nvim-treesitter',
 
     -- Debugging
-    use 'nvim-lua/plenary.nvim'
-    use 'mfussenegger/nvim-dap'
+    'nvim-lua/plenary.nvim',
+    'mfussenegger/nvim-dap',
 
     -- Devicons
-    use 'kyazdani42/nvim-web-devicons'
+    'kyazdani42/nvim-web-devicons',
 
     -- Libmodal
-    use {
+    {
         've5li/nvim-libmodal',
         branch = 'handle-escaped-keys'
-    }
+    },
 
     -- File viewer
-    use {
+    {
         'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons'
-    }
+        dependencies = 'kyazdani42/nvim-web-devicons'
+    },
 
     -- Searching
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = 'nvim-lua/plenary.nvim'
-    }
+    {
+        'nvim-telescope/telescope.nvim',
+        version = '0.1.0',
+        dependencies = 'nvim-lua/plenary.nvim'
+    },
 
     -- Tagbar
-    use 'preservim/tagbar'
+    'preservim/tagbar',
 
     -- TODOs
-    use {
+    {
         'folke/todo-comments.nvim',
-        requires = 'nvim-lua/plenary.nvim'
-    }
+        dependencies = 'nvim-lua/plenary.nvim'
+    },
 
     -- Errors and warnings
-    use {
+    {
         'folke/trouble.nvim',
-        requires = 'kyazdani42/nvim-web-devicons'
-    }
+        dependencies = 'kyazdani42/nvim-web-devicons'
+    },
 
     -- Theme
-    use 'tanvirtin/monokai.nvim'
+    'tanvirtin/monokai.nvim',
 
     -- Highlight arguments
-    use {
+    {
         'm-demare/hlargs.nvim',
-        requires = 'nvim-treesitter/nvim-treesitter'
-    }
+        dependencies = 'nvim-treesitter/nvim-treesitter'
+    },
 
     -- Multicursor
-    use {
+    {
         've5li/better-multi.nvim',
-        requires = 'nvim-libmodal'
-    }
+        dependencies = 'nvim-libmodal'
+    },
 
     -- Speed up startup
-    use 'lewis6991/impatient.nvim'
+    'lewis6991/impatient.nvim',
 
     -- Git integration
-    use {
+    {
         'tanvirtin/vgit.nvim',
-        requires = 'nvim-lua/plenary.nvim'
-    }
+        dependencies = 'nvim-lua/plenary.nvim'
+    },
 
     -- Statusline
-    use {
+    {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
+        dependencies = { 'kyazdani42/nvim-web-devicons' }
+    },
 
     -- Markdown perview
-    use 'ellisonleao/glow.nvim'
+    'ellisonleao/glow.nvim',
 
     -- Crates.io
-    use {
+    {
         'saecki/crates.nvim',
-        requires = 'nvim-lua/plenary.nvim'
-    }
-end)
+        dependencies = 'nvim-lua/plenary.nvim'
+    },
+}
+
+require("lazy").setup(plugins, {})
