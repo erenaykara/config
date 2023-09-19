@@ -14,9 +14,6 @@ local monokai_config = {
         Normal = {
             bg = "NONE",
         },
-        CursorLine = {
-            style = "underline",
-        },
         Visual = {
             bg = palette.orange,
             fg = palette.base2,
