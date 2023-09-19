@@ -113,32 +113,6 @@ local treesitter_config = {
     }
 }
 
--- Nvim Tree config
-local tree_config = {
-    update_focused_file = {
-        enable = true,
-        update_root = true,
-    },
-    view = {
-        side = "right"
-    },
-    renderer = {
-        icons = {
-            glyphs = {
-                git = {
-                    unstaged = "⚠",
-                    staged = "✓",
-                    unmerged = "",
-                    renamed = "➜",
-                    untracked = "",
-                    deleted = "",
-                    ignored = "◌",
-                }
-            }
-        }
-    }
-}
-
 -- Telescope config
 local telescope_config = {
     defaults = {
@@ -185,7 +159,6 @@ local gitsigns_config = {
 
 -- Plugins
 require('nvim-treesitter.configs').setup(treesitter_config)
-require("nvim-tree").setup(tree_config)
 require('telescope').setup(telescope_config)
 require('todo-comments').setup()
 require('trouble').setup()
@@ -195,6 +168,7 @@ require('hlargs').setup()
 require('crates').setup()
 require('gitsigns').setup(gitsigns_config)
 require('better-multi').setup()
+require("oil").setup()
 
 -- Vim settings
 vim.opt.signcolumn = "yes"

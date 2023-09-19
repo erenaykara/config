@@ -82,8 +82,17 @@ vim.keymap.set("n", "lM", ":lua require('telescope.builtin').man_pages({ section
 vim.keymap.set("n", "lh", ":lua require('telescope.builtin').help_tags()<cr>", { silent = true })
 vim.keymap.set("n", "lt", ":TodoTelescope<cr>", { silent = true })
 
--- Nvim Tree
-vim.keymap.set("n", "<C-p>", ":NvimTreeToggle<cr>", { silent = true })
+-- Oil
+vim.keymap.set("n", "-", function()
+    if vim.fn.getwininfo(vim.fn.win_getid())[1].terminal == 1 then
+        local working_directory = vim.fn.getcwd();
+        package.loaded.oil.open(working_directory)
+    else
+        local buffer_path = vim.api.nvim_buf_get_name(0)
+        local buffer_directory = vim.fn.fnamemodify(buffer_path, ":h")
+        package.loaded.oil.open(buffer_directory)
+    end
+end)
 
 -- Tagbar
 vim.g.tagbar_map_nexttag = "" -- Unbind so that switching windows works
