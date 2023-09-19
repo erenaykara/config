@@ -99,11 +99,8 @@ local plugins = {
     -- Speed up startup
     'lewis6991/impatient.nvim',
 
-    -- Git integration
-    {
-        'tanvirtin/vgit.nvim',
-        dependencies = 'nvim-lua/plenary.nvim'
-    },
+    -- Git signs
+    'lewis6991/gitsigns.nvim',
 
     -- Statusline
     {

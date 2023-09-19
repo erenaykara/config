@@ -55,7 +55,6 @@ local monokai_config = {
             style = 'strikethrough',
             fg = palette.aqua,
         },
-        -- vgit
         GitSignsAdd = {
             fg = palette.green,
             bg = palette.base2,
@@ -169,6 +168,24 @@ local telescope_config = {
     }
 }
 
+-- Git signs
+local gitsigns_config = {
+    on_attach = function(buffer_number)
+        set_gitsigns_bindings({ buffer = buffer_number })
+    end,
+    current_line_blame = true,
+    current_line_blame_opts = {
+        virt_text_pos = "right_align",
+    },
+    preview_config = {
+        border = "none",
+        row = 1,
+    },
+    yadm = {
+        enable = true,
+    }
+}
+
 -- Plugins
 require('nvim-treesitter.configs').setup(treesitter_config)
 require("nvim-tree").setup(tree_config)
@@ -179,7 +196,7 @@ require('impatient')
 require('glow').setup()
 require('hlargs').setup()
 require('crates').setup()
-require('vgit').setup()
+require('gitsigns').setup(gitsigns_config)
 require('better-multi').setup()
 
 -- Vim settings

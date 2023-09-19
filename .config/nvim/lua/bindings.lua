@@ -101,20 +101,25 @@ vim.keymap.set("n", "<C-e>", "viwo<Esc>:MultiVisualMode<cr>", { silent = true })
 vim.keymap.set("n", "U", ":MultiNormalMode<cr>U", { silent = true });
 vim.keymap.set("n", "E", ":MultiNormalMode<cr>E", { silent = true });
 
--- Git
-vim.keymap.set("n", "mu", ":VGit hunk_up<cr>", { silent = true })
-vim.keymap.set("n", "me", ":VGit hunk_down<cr>", { silent = true })
-vim.keymap.set("n", "mc", ":VGit checkout")
-vim.keymap.set("n", "md", ":VGit buffer_diff_preview<cr>", { silent = true })
-vim.keymap.set("n", "mD", ":VGit buffer_diff_staged_preview<cr>", { silent = true })
-vim.keymap.set("n", "mh", ":VGit buffer_history_preview<cr>", { silent = true })
-vim.keymap.set("n", "mb", ":VGit buffer_blame_preview<cr>", { silent = true })
-vim.keymap.set("n", "ms", ":VGit buffer_hunk_stage<cr>", { silent = true })
-vim.keymap.set("n", "mS", ":VGit buffer_stage<cr>", { silent = true })
-vim.keymap.set("n", "mU", ":VGit buffer_unstage<cr>", { silent = true })
-vim.keymap.set("n", "mr", ":VGit buffer_hunk_reset<cr>", { silent = true })
-vim.keymap.set("n", "mR", ":VGit buffer_reset<cr>", { silent = true })
-vim.keymap.set("n", "mP", ":VGit project_diff_preview<cr>", { silent = true })
+-- Git signs
+function set_gitsigns_bindings(buffer_options)
+    local gitsings = package.loaded.gitsigns
+
+    -- Staging
+    vim.keymap.set('n', 'ms', gitsings.stage_hunk)
+    vim.keymap.set('n', 'mu', gitsings.undo_stage_hunk)
+    vim.keymap.set('n', 'mr', gitsings.reset_hunk)
+    vim.keymap.set('v', 'ms', function() gitsings.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+    vim.keymap.set('v', 'mr', function() gitsings.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
+    vim.keymap.set('n', 'mS', gitsings.stage_buffer)
+    vim.keymap.set('n', 'mU', gitsings.reset_buffer_index)
+    vim.keymap.set('n', 'mR', gitsings.reset_buffer)
+
+    -- Tools
+    vim.keymap.set("n", "md", function() gitsings.diffthis("~") end)
+    vim.keymap.set("n", "mD", gitsings.toggle_deleted)
+    vim.keymap.set('n', 'mb', gitsings.blame_line)
+end
 
 -- LSP
 function set_lsp_bindings(buffer_options)
