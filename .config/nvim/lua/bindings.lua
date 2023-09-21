@@ -18,6 +18,13 @@ vim.keymap.set("n", "we", "<C-w><C-j>", { silent = true })
 vim.keymap.set("n", "<C-b>", ":b#<cr>", { silent = true })
 vim.keymap.set("n", "<C-z>", ":bw<cr>", { silent = true })
 
+-- Moving windows
+vim.keymap.set("n", "wI", "<C-w>L", { silent = true })
+vim.keymap.set("n", "wN", "<C-w>H", { silent = true })
+vim.keymap.set("n", "wU", "<C-w>K", { silent = true })
+vim.keymap.set("n", "wE", "<C-w>J", { silent = true })
+vim.keymap.set("n", "wt", "<C-w>T", { silent = true })
+
 -- Terminal
 vim.keymap.set("n", "<C-t>", ":term<cr>:keepalt file ")
 vim.keymap.set("t", "<S-esc>", "<C-\\><C-n>")
