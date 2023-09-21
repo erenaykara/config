@@ -3,8 +3,8 @@ vim.keymap.set("n", "b", "i<cr><esc>")
 vim.keymap.set("n", "B", "i<cr><esc>O<esc>")
 vim.keymap.set("n", "j", '"_deP')
 vim.keymap.set("n", "<C-q>", function() vim.api.nvim_command('let @/ = ""') end)
-vim.keymap.set("v", "s", '"ay:s/<C-r>a/')
-vim.keymap.set("v", "S", '"ay:%s/<C-r>a/')
+vim.keymap.set("v", "sh", '"ay:s/<C-r>a/')
+vim.keymap.set("v", "sf", '"ay:%s/<C-r>a/')
 
 -- Faster cursor movement
 vim.keymap.set("n", "<S-Up>", '10k')
