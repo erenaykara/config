@@ -60,18 +60,40 @@ bindsym $mod+$alt+s scratchpad show
 
 # sway actions
 bindsym $mod+$alt+k reload
-bindsym $mod+$alt+h exit
+bindsym $mod+$alt+h exec swaynag -t warning -m "Exit Sway?" -B "Yes" "swaymsg exit"
 
 # focus
 focus_follows_mouse no
 focus_on_window_activation smart
 mouse_warping container
 
-# window properties
+# floating windows
 for_window [app_id="floating"] floating enable
-default_border pixel 4px
-gaps inner 6px
-gaps outer 4px
+
+# hack to not render title bar text
+font monospace 0
+
+# window titlebar
+titlebar_border_thickness 0
+titlebar_padding 5 6
+
+# window borders
+default_border normal 0
+corner_radius 8
+
+# window shadows
+shadows enable
+shadow_blur_radius 10
+shadow_color #000000AF
+
+# transparent window background blur
+blur enable
+blur_passes 2
+blur_radius 3
+
+# window gaps
+gaps inner 16px
+gaps outer 0px
 
 # window actions
 bindsym $mod+t fullscreen
@@ -97,11 +119,11 @@ bindsym $mod+alt+$up resize shrink height 20px
 bindsym $mod+alt+$right resize grow width 20px
 
 # window colors
-client.focused #666666 #666666 #bbbbbb #666666 #666666
-client.focused_inactive #080808 #080808 #bbbbbb #080808 #080808
-client.placeholder #080808 #080808 #bbbbbb #080808 #080808
-client.unfocused #080808 #080808 #bbbbbb #080808 #080808
-client.urgent #080808 #080808 #bbbbbb #080808 #080808
+client.focused #e09a38 #e09a38 #bbbbbb #e09a38 #e09a38
+client.focused_inactive #00000000 #00000000 #bbbbbb #00000000 #00000000
+client.placeholder #00000000 #00000000 #bbbbbb #00000000 #00000000
+client.unfocused #00000000 #00000000 #bbbbbb #00000000 #00000000
+client.urgent #00000000 #00000000 #bbbbbb #00000000 #00000000
 
 # workspaces
 bindsym $mod+w workspace number 1
