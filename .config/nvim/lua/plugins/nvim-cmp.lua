@@ -15,6 +15,7 @@ local function config()
 
     -- Completion plugin setup
     local cmp = require('cmp')
+    local select_opts = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup({
         -- Enable LSP snippets
@@ -24,19 +25,15 @@ local function config()
             end,
         },
         mapping = {
-            ['<C-p>'] = cmp.mapping.select_prev_item(),
-            ['<C-n>'] = cmp.mapping.select_next_item(),
-            -- Add tab support
-            ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-            ['<Tab>'] = cmp.mapping.select_next_item(),
-            ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.close(),
-            ['<CR>'] = cmp.mapping.confirm({
+            ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
+            ['<C-l>'] = cmp.mapping.select_prev_item(select_opts),
+            ['<C-e>'] = cmp.mapping.confirm({
                 behavior = cmp.ConfirmBehavior.Insert,
                 select = true,
-            })
+            }),
+            -- Scrolling docs
+            ['<C-f>'] = cmp.mapping.scroll_docs(4),
+            ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
         },
         sources = {
             { name = 'path' },                                       -- file paths
