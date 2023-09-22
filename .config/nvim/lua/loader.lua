@@ -20,6 +20,10 @@ local opts = {
     change_detection = {
         notify = false,
     },
+    -- Use the home directory as dev plugin path
+    dev = {
+        path = "~",
+    },
     ui = {
         icons = {
             cmd = "🍀",
