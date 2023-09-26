@@ -1,19 +1,5 @@
--- Vim options
-vim.opt.signcolumn = "yes"
-vim.opt.guicursor = "n-v-c:block-Cursor"
-vim.opt.number = true
-vim.opt.cursorline = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true
-vim.opt.smartcase = true
-vim.opt.clipboard = "unnamedplus"
-vim.opt.whichwrap = "<,>"
-vim.opt.list = true
-vim.opt.swapfile = false
-vim.opt.scrolloff = 8
-vim.opt.confirm = true
+-- Clear jump buffer on start
+vim.cmd("autocmd VimEnter * :clearjumps")
 
 -- Only show cursor line in the focused window
 local cursorline_group = vim.api.nvim_create_augroup("cursorline_group", { clear = true })

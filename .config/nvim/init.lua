@@ -5,6 +5,7 @@ P = function(value)
 end
 
 -- Modules
+require("options")
 require("loader")
 require("bindings")
 require("lazygit")
