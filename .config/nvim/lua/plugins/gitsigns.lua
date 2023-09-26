@@ -38,5 +38,5 @@ return {
     'lewis6991/gitsigns.nvim',
     config = true,
     opts = opts,
-    event = "BufRead",
+    event = { "BufRead", "BufNewFile" },
 }

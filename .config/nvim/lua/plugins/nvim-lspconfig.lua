@@ -133,5 +133,5 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = 'simrat39/rust-tools.nvim',
     config = config,
-    event = "BufRead",
+    event = { "BufRead", "BufNewFile" },
 }

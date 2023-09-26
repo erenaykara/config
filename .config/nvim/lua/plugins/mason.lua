@@ -8,5 +8,5 @@ return {
     dependencies = 'williamboman/mason-lspconfig.nvim',
     config = config,
     cmd = "Mason",
-    event = "BufRead",
+    event = { "BufRead", "BufNewFile" },
 }

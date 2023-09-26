@@ -17,5 +17,5 @@ return {
     'nvim-treesitter/nvim-treesitter',
     config = true,
     opts = opts,
-    event = "BufRead",
+    event = { "BufRead", "BufNewFile" },
 }
