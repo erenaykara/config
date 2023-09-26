@@ -26,4 +26,6 @@ return {
     config = true,
     keys = keys,
     opts = opts,
+    -- Since oil hijacks the file explorer we can't lazy load it
+    lazy = false,
 }
