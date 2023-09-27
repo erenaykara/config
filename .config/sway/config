@@ -60,7 +60,7 @@ bindsym $mod+$alt+s scratchpad show
 
 # sway actions
 bindsym $mod+$alt+k reload
-bindsym $mod+$alt+h exec swaynag -t warning -m "Exit Sway?" -B "Yes" "swaymsg exit"
+bindsym $mod+$alt+h exec swaynag -t warning -m "Exit Sway?" -B "Yes" "swaymsg exit" -s "No"
 
 # focus
 focus_follows_mouse no
@@ -75,7 +75,7 @@ font monospace 0
 
 # window titlebar
 titlebar_border_thickness 0
-titlebar_padding 5 6
+titlebar_padding 1 1
 
 # window borders
 default_border normal 0
@@ -92,8 +92,12 @@ blur_passes 2
 blur_radius 3
 
 # window gaps
-gaps inner 16px
-gaps outer 0px
+gaps inner 10px
+gaps bottom -10px
+
+# drop shadows and rounded corners for notifications
+layer_effects "notifications" blur enable; shadows enable; corner_radius 6
+layer_effects "swaynag" blur enable; shadows enable; corner_radius 6
 
 # window actions
 bindsym $mod+t fullscreen
@@ -119,7 +123,7 @@ bindsym $mod+alt+$up resize shrink height 20px
 bindsym $mod+alt+$right resize grow width 20px
 
 # window colors
-client.focused #e09a38 #e09a38 #bbbbbb #e09a38 #e09a38
+client.focused #dd4974 #dd4974 #bbbbbb #dd4974 #dd4974
 client.focused_inactive #00000000 #00000000 #bbbbbb #00000000 #00000000
 client.placeholder #00000000 #00000000 #bbbbbb #00000000 #00000000
 client.unfocused #00000000 #00000000 #bbbbbb #00000000 #00000000
@@ -138,7 +142,9 @@ bindsym $mod+$alt+p move container to workspace number 3
 bindsym $mod+$alt+b move container to workspace number 4
 
 # swaybar
-bar mode invisible
+bar {
+     swaybar_command waybar
+}
 
 # includes
 include /etc/sway/config.d/*
