@@ -1,2 +1,2 @@
 #!/bin/bash
-echo -e ":term\n:keepalt file terminal\ni" | nvim -s -
+echo -e -n ":term\n:keepalt file terminal\ni" | nvim -s -
