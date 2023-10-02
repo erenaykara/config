@@ -3,7 +3,7 @@
 # When chaning the working directory, change the cwd of neovim
 function set_nvim_pwd_after_change --on-variable PWD
     if set -q NVIM
-        ~/.config/nvim/autocwd
+        ~/.config/nvim/scripts/autocwd.py
     end
 end
 

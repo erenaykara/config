@@ -31,7 +31,7 @@ if not args:
 # TODO: This could use some additional parsing to make sure we don't open flags as files.
 nvim.vars['files_to_edit'] = list(reversed(args))
 for _ in args:
-    nvim.command('exe "split ".remove(g:files_to_edit, 0)')
+    nvim.command('exe "edit ".remove(g:files_to_edit, 0)')
 
 
 def find_buffer(name):
