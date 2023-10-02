@@ -42,3 +42,6 @@ vim.opt.scrolloff = 8
 
 -- Ask for confirmation to close a buffer instead of failing if there are unsaved changes
 vim.opt.confirm = true
+
+-- Make the jumplist behave like the tagstack or like a web browser
+vim.opt.jumpoptions = "stack"
