@@ -10,10 +10,13 @@ local function open()
 end
 
 local opts = {
-    -- Remap toggling of hidden files to "th"
     keymaps = {
+        -- Remap toggling of hidden files to "th"
         ["th"] = "actions.toggle_hidden",
         ["g."] = false,
+        -- Remap opening file externally to "ge"
+        ["ge"] = "actions.open_external",
+        ["gx"] = false,
     }
 }
 
