@@ -27,6 +27,10 @@ local function config()
             local gitdir = vim.fn.finddir('.git', filepath .. ';')
             return gitdir and #gitdir > 0 and #gitdir < #filepath
         end,
+        treesitter_support = function()
+            return package.loaded["nvim-treesitter"] ~= nil and
+                require("nvim-treesitter.ts_utils").get_node_at_cursor() ~= nil
+        end
     }
 
     -- Config
@@ -117,6 +121,15 @@ local function config()
         return mode_color[get_mode_name()]
     end
 
+    local function get_node_type()
+        if package.loaded["nvim-treesitter"] ~= nil then
+            local node = require("nvim-treesitter.ts_utils").get_node_at_cursor();
+            if node ~= nil then
+                return node:type()
+            end
+        end
+    end
+
     ins_left {
         function()
             return '▊'
@@ -158,6 +171,13 @@ local function config()
     }
 
     -- Add components to right sections
+
+    ins_right {
+        get_node_type,
+        icon = '󰔱',
+        cond = conditions.treesitter_support,
+    }
+
     ins_right {
         'branch',
         icon = '',
