@@ -10,6 +10,8 @@ local function open()
 end
 
 local opts = {
+    -- Instantly close buffers after selecting a file
+    cleanup_delay_ms = 0,
     keymaps = {
         -- Remap toggling of hidden files to "th"
         ["th"] = "actions.toggle_hidden",
