@@ -45,3 +45,6 @@ vim.opt.confirm = true
 
 -- Make the jumplist behave like the tagstack or like a web browser
 vim.opt.jumpoptions = "stack"
+
+-- Create folds manually
+vim.opt.foldmethod = "manual"
