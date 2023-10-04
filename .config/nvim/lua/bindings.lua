@@ -11,6 +11,7 @@ vim.keymap.set("n", "<S-Up>", '10k')
 vim.keymap.set("n", "<S-Down>", '10j')
 
 -- Switching windows
+vim.keymap.set("n", "wq", "<C-w>q", { silent = true })
 vim.keymap.set("n", "wi", "<C-w><C-l>", { silent = true })
 vim.keymap.set("n", "wn", "<C-w><C-h>", { silent = true })
 vim.keymap.set("n", "wu", "<C-w><C-k>", { silent = true })
