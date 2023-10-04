@@ -48,3 +48,6 @@ vim.opt.jumpoptions = "stack"
 
 -- Create folds manually
 vim.opt.foldmethod = "manual"
+
+-- Set custom fold text
+vim.opt.foldtext = 'v:lua.custom_fold_text()'

@@ -64,6 +64,10 @@ local function config()
                 fg = palette.red,
                 bg = palette.base2,
             },
+            Folded = {
+                bg = palette.base4,
+                fg = palette.orange,
+            },
         }
     }
 

@@ -8,6 +8,7 @@ end
 require("options")
 require("loader")
 require("bindings")
+require("folds")
 require("lazygit")
 require("diagnostics")
 require("autocommands")
