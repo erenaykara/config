@@ -20,5 +20,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
     callback = function()
         vim.opt_local.number = false
         vim.opt_local.signcolumn = "no"
+        vim.api.nvim_buf_set_keymap(0, "t", "<esc>", "<C-\\><C-n>", {})
     end
 })

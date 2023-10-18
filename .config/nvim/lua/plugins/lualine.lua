@@ -30,6 +30,10 @@ local function config()
         treesitter_support = function()
             return package.loaded["nvim-treesitter"] ~= nil and
                 require("nvim-treesitter.ts_utils").get_node_at_cursor() ~= nil
+        end,
+        in_terminal_mode = function()
+            local mode = vim.api.nvim_get_mode().mode
+            return mode == "t" or mode == "nt"
         end
     }
 
@@ -168,6 +172,22 @@ local function config()
             warn = { fg = colors.yellow },
             info = { fg = colors.yellow },
         },
+    }
+
+    ins_left {
+        function()
+            local keymaps = vim.api.nvim_buf_get_keymap(0, "t")
+            if is_keymap_present(keymaps, "<Esc>") then
+                return "󰿆"
+            else
+                return "󰌾"
+            end
+        end,
+        cond = conditions.in_terminal_mode,
+        color = function()
+            local color = get_mode_color()
+            return { fg = color, gui = 'bold' }
+        end,
     }
 
     -- Add components to right sections

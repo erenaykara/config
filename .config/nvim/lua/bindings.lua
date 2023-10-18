@@ -29,3 +29,23 @@ vim.keymap.set("n", "wt", "<C-w>T", { silent = true })
 -- Terminal
 vim.keymap.set("n", "<C-t>", ":term<cr>:keepalt file ")
 vim.keymap.set("t", "<S-esc>", "<C-\\><C-n>")
+
+function is_keymap_present(keymaps, keys)
+    for _, keymap in ipairs(keymaps) do
+        if keymap.lhs == keys then
+            return true
+        end
+    end
+
+    return false
+end
+
+vim.keymap.set("n", "re", function()
+    local keymaps = vim.api.nvim_buf_get_keymap(0, "t")
+
+    if is_keymap_present(keymaps, "<Esc>") then
+        vim.api.nvim_buf_del_keymap(0, "t", "<Esc>")
+    else
+        vim.api.nvim_buf_set_keymap(0, "t", "<Esc>", "<C-\\><C-n>", {})
+    end
+end)
