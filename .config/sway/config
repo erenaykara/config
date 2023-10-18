@@ -45,6 +45,9 @@ bindsym $mod+$alt+d exec clipman clear -t "CUSTOM" -T "rofi -dmenu -p clipboard 
 # authentication agent
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+# color temperature adjustment
+exec gammastep
+
 # notifications
 exec dunst -config /home/.config/dunst/dunstrc
 bindsym $mod+a exec dunstctl close-all
