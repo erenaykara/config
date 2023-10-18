@@ -1,6 +1,6 @@
 local keys = {
-    { "gw", ":HopWord<cr>" },
-    { "gl", ":HopLine<cr>" },
+    { "gw", ":HopWord<cr>",   desc = "Go to word" },
+    { "gl", ":HopLine<cr>",   desc = "Go to line" },
 }
 
 return {

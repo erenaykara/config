@@ -3,9 +3,8 @@ local opts = {
 }
 
 local keys = {
-    { "rm", function() package.loaded.treesj.toggle() end },
-    { "rs", function() package.loaded.treesj.split() end },
-    { "rj", function() package.loaded.treesj.join() end },
+    { "rs", function() package.loaded.treesj.split() end, desc = "Split node" },
+    { "rj", function() package.loaded.treesj.join() end, desc = "Join node" },
 }
 
 return {

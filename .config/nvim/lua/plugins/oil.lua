@@ -23,7 +23,7 @@ local opts = {
 }
 
 local keys = {
-    { "-", open },
+    { "-", open, desc = "Open directory view"},
 }
 
 return {

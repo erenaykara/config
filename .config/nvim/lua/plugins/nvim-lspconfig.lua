@@ -1,26 +1,36 @@
 -- LSP
 local function set_lsp_bindings(buffer_options)
+    local function desc(description)
+        buffer_options["desc"] = description
+        return buffer_options
+    end
+
     -- Goto
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, buffer_options)
-    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, buffer_options)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, buffer_options)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, buffer_options)
-    vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, buffer_options)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, desc "Go to definition")
+    vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition, desc "Go to type definition")
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, desc "Go to implementation")
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, desc "Go to references")
+    vim.keymap.set('n', 'gh', vim.lsp.buf.signature_help, desc "Show signature help")
 
     -- Refactoring
-    vim.keymap.set('n', 'rn', vim.lsp.buf.rename, buffer_options)
-    vim.keymap.set('n', 'rf', vim.lsp.buf.format, buffer_options)
+    vim.keymap.set('n', 'rn', vim.lsp.buf.rename, desc "Rename")
+    vim.keymap.set('n', 'rf', vim.lsp.buf.format, desc "Run formatter")
 end
 
 -- Rust Tools
 local function set_rust_tools_bindings(rust_tools, buffer_options)
+    local function desc(description)
+        buffer_options["desc"] = description
+        return buffer_options
+    end
+
     -- Hover actions
-    vim.keymap.set("n", "<C-a>", rust_tools.hover_actions.hover_actions, buffer_options)
-    vim.keymap.set("n", "<C-s>", rust_tools.code_action_group.code_action_group, buffer_options)
+    vim.keymap.set("n", "<C-a>", rust_tools.hover_actions.hover_actions, desc "Hover actions")
+    vim.keymap.set("n", "<C-s>", rust_tools.code_action_group.code_action_group, desc "Code actions")
 
     -- Goto
-    vim.keymap.set('n', 'gp', ":RustParentModule<cr>", { silent = true })
-    vim.keymap.set('n', 'ge', ":RustOpenExternalDocs<cr>", { silent = true })
+    vim.keymap.set('n', 'gp', ":RustParentModule<cr>", { silent = true, desc = "Go to parent module" })
+    vim.keymap.set('n', 'ge', ":RustOpenExternalDocs<cr>", { silent = true, desc = "Open external docs" })
 end
 
 local function config()

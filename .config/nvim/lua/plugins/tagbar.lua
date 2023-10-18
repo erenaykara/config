@@ -1,5 +1,5 @@
 local keys = {
-    { "lb", ":TagbarToggle<cr>", silent = true }
+    { "lb", ":TagbarToggle<cr>", silent = true, desc = "Toggle tagbar" }
 }
 
 return {

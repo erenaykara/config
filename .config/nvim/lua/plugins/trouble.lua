@@ -1,5 +1,5 @@
 local keys = {
-    { "lp", ":TroubleToggle<cr>", silent = true }
+    { "lp", ":TroubleToggle<cr>", silent = true, desc = "Toggle diagnostics window" }
 }
 
 return {
