@@ -7,10 +7,10 @@ local sign = function(opts)
 end
 
 -- Diagnostics symbols
-sign({name = 'DiagnosticSignError', text = '💢'})
-sign({name = 'DiagnosticSignWarn', text = '⚠️'})
-sign({name = 'DiagnosticSignHint', text = '🌈'})
-sign({name = 'DiagnosticSignInfo', text = '🧠'})
+sign({ name = 'DiagnosticSignError', text = '💢' })
+sign({ name = 'DiagnosticSignWarn', text = '⚠️' })
+sign({ name = 'DiagnosticSignHint', text = '🌈' })
+sign({ name = 'DiagnosticSignInfo', text = '🧠' })
 
 -- Diagnostics configuration
 vim.diagnostic.config({
@@ -27,4 +27,5 @@ vim.diagnostic.config({
     },
 })
 
-vim.keymap.set("n", "<C-d>", function() vim.diagnostic.open_float(nil, { focusable = false }) end)
+vim.keymap.set("n", "<C-d>", function() vim.diagnostic.open_float(nil, { focusable = false }) end,
+    { desc = "Open diagnostics" })
