@@ -26,6 +26,14 @@ vim.keymap.set("n", "wU", "<C-w>K", { silent = true, desc = "Move window up" })
 vim.keymap.set("n", "wE", "<C-w>J", { silent = true, desc = "Move window down" })
 vim.keymap.set("n", "wt", "<C-w>T", { silent = true, desc = "Move window to tab" })
 
+-- Go to start of a text object
+require("yop").op_map({ "n", "v" }, "gs", function() end)
+-- Go to end of a text object
+require("yop").op_map({ "n", "v" }, "ge", function(lines, info)
+    local position = info.position.last
+    vim.api.nvim_win_set_cursor(0, { position[1], position[2] })
+end)
+
 -- Check if keymap is set
 function is_keymap_present(keymaps, keys)
     for _, keymap in ipairs(keymaps) do
