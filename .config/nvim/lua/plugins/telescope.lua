@@ -136,13 +136,6 @@ local keys = {
         desc =
         "Find help pages"
     },
-    {
-        "lt",
-        ":TodoTelescope<cr>",
-        silent = true,
-        desc =
-        "Find TODOs"
-    },
 }
 
 return {
