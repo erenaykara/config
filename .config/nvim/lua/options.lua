@@ -1,3 +1,6 @@
+-- Disable greeting message
+vim.opt.shortmess = vim.opt.shortmess + { I = true }
+
 -- Enable the sign column
 vim.opt.signcolumn = "yes"
 
