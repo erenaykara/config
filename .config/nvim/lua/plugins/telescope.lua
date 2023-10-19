@@ -23,10 +23,6 @@ local opts = {
     }
 }
 
-local function commits_on_visual()
-    require('telescope.builtin').git_bcommits_range()
-end
-
 local keys = {
     {
         "lf",
