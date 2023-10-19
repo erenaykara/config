@@ -29,8 +29,8 @@ local keys = {
 return {
     'stevearc/oil.nvim',
     config = true,
-    keys = keys,
     opts = opts,
+    keys = keys,
     -- Since oil hijacks the file explorer we can't lazy load it
     lazy = false,
 }
