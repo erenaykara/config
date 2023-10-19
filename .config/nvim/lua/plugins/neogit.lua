@@ -7,7 +7,7 @@ local keys = {
             local is_gitdir = gitdir and #gitdir > 0 and #gitdir < #filepath
 
             if is_gitdir then
-                package.loaded.neogit.open({ kind = "replace" })
+                package.loaded.neogit.open()
             else
                 print("not currently in a git directory")
             end
