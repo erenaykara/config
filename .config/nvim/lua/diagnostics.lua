@@ -7,10 +7,10 @@ local sign = function(opts)
 end
 
 -- Diagnostics symbols
-sign({ name = 'DiagnosticSignError', text = '💢' })
-sign({ name = 'DiagnosticSignWarn', text = '⚠️' })
-sign({ name = 'DiagnosticSignHint', text = '🌈' })
-sign({ name = 'DiagnosticSignInfo', text = '🧠' })
+sign({ name = 'DiagnosticSignError', text = '' })
+sign({ name = 'DiagnosticSignWarn', text = '' })
+sign({ name = 'DiagnosticSignInfo', text = '' })
+sign({ name = 'DiagnosticSignHint', text = '󰍉' })
 
 -- Diagnostics configuration
 vim.diagnostic.config({
