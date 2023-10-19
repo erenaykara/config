@@ -24,10 +24,6 @@ local function set_rust_tools_bindings(rust_tools, buffer_options)
         return buffer_options
     end
 
-    -- Hover actions
-    vim.keymap.set("n", "<C-a>", rust_tools.hover_actions.hover_actions, desc "Hover actions")
-    vim.keymap.set("n", "<C-s>", rust_tools.code_action_group.code_action_group, desc "Code actions")
-
     -- Goto
     vim.keymap.set('n', 'gp', ":RustParentModule<cr>", { silent = true, desc = "Go to parent module" })
     vim.keymap.set('n', 'ge', ":RustOpenExternalDocs<cr>", { silent = true, desc = "Open external docs" })
@@ -92,8 +88,10 @@ local function config()
         },
     })
 
+    local lspconfig = package.loaded.lspconfig
+
     -- Bash
-    require('lspconfig').bashls.setup({
+    lspconfig.bashls.setup({
         on_attach = function(_, buffer_number)
             local buffer_options = { noremap = true, silent = true, buffer = buffer_number }
             set_lsp_bindings(buffer_options)
@@ -101,7 +99,7 @@ local function config()
     })
 
     -- Typescript
-    require('lspconfig').tsserver.setup({
+    lspconfig.tsserver.setup({
         on_attach = function(_, buffer_number)
             local buffer_options = { noremap = true, silent = true, buffer = buffer_number }
             set_lsp_bindings(buffer_options)
@@ -109,7 +107,7 @@ local function config()
     })
 
     -- Kotlin
-    require('lspconfig').kotlin_language_server.setup({
+    lspconfig.kotlin_language_server.setup({
         on_attach = function(_, buffer_number)
             local buffer_options = { noremap = true, silent = true, buffer = buffer_number }
             set_lsp_bindings(buffer_options)
@@ -117,7 +115,7 @@ local function config()
     })
 
     -- Lua
-    require('lspconfig').lua_ls.setup {
+    lspconfig.lua_ls.setup {
         on_attach = function(_, buffer_number)
             local buffer_options = { noremap = true, silent = true, buffer = buffer_number }
             set_lsp_bindings(buffer_options)
