@@ -1,5 +1,5 @@
 local keys = {
-    { "<space>t", function() package.loaded["alternate-toggler"].toggleAlternate() end }
+    { "ht", function() package.loaded["alternate-toggler"].toggleAlternate() end }
 }
 
 return {
