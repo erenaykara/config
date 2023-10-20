@@ -13,10 +13,10 @@ local opts = {
         buffers = {
             mappings = {
                 i = {
-                    ["<C-d>"] = function() require('telescope.actions').delete_buffer() end
+                    ["<C-d>"] = function(prompt_bufrn) require('telescope.actions').delete_buffer(prompt_bufrn) end
                 },
                 n = {
-                    ["<C-d>"] = function() require('telescope.actions').delete_buffer() end
+                    ["<C-d>"] = function(prompt_bufrn) require('telescope.actions').delete_buffer(prompt_bufrn) end
                 }
             }
         }
