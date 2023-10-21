@@ -6,7 +6,7 @@ end
 
 -- Modules
 require("options")
-require("loader")
+require("plugins")
 require("bindings")
 require("folds")
 require("diagnostics")
