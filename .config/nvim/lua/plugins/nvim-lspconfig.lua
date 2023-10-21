@@ -26,7 +26,7 @@ local function set_rust_tools_bindings(rust_tools, buffer_options)
 
     -- Goto
     vim.keymap.set('n', 'gp', ":RustParentModule<cr>", { silent = true, desc = "Go to parent module" })
-    vim.keymap.set('n', 'ge', ":RustOpenExternalDocs<cr>", { silent = true, desc = "Open external docs" })
+    vim.keymap.set('n', 'gE', ":RustOpenExternalDocs<cr>", { silent = true, desc = "Open external docs" })
 end
 
 local function config()
