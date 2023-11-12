@@ -1,2 +1,2 @@
-enable_selector = false
-selector = "rofi -dmenu -theme theme -i -p 'Open With: '"
+enable_selector = true
+selector = "rofi -dmenu -theme theme -i -p 'Open with'"
