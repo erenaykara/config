@@ -1,5 +1,5 @@
 # Config
-This repository contains my Arch Linux configuration. Most of the customization is in `.config/nvim` and `.config/sway`.
+This repository contains my dotfiles (currently on NixOS). Most of the customization is in `.config/nvim`, `.config/fish` and `.config/hypr`.
 
 #### Here is a screenshot of what my setup looks like:
 ![screenshot](screenshot.png)
