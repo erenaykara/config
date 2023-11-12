@@ -88,10 +88,10 @@ local function config()
         },
     })
 
-    local lspconfig = package.loaded.lspconfig
+    local lspconfig = require("lspconfig")
 
-    -- Bash
-    lspconfig.bashls.setup({
+    -- Nix
+    lspconfig.nil_ls.setup({
         on_attach = function(_, buffer_number)
             local buffer_options = { noremap = true, silent = true, buffer = buffer_number }
             set_lsp_bindings(buffer_options)
