@@ -42,7 +42,7 @@ vim.keymap.set("n", "<C-t>", function()
     local terminal_name = vim.fn.input("terminal name: ")
     if terminal_name ~= nil and terminal_name ~= "" then
         vim.cmd("term")
-        vim.cmd("keepalt file " .. terminal_name)
+        vim.cmd("keepalt file "..terminal_name..".terminal")
     end
 end, { desc = "Open new terminal buffer" })
 vim.keymap.set("t", "<S-esc>", "<C-\\><C-n>", { desc = "Exit terminal insert mode" })
