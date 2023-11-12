@@ -104,7 +104,7 @@ local function config()
         ['r?'] = colors.cyan,
         ['!'] = colors.red,
         t = colors.red,
-        nt = colors.white,
+        nt = colors.cyan,
 
         MultiNormal = colors.yellow,
         MultiVisual = colors.orange,
@@ -215,12 +215,33 @@ local function config()
         cond = conditions.hide_in_width,
     }
 
+    -- Time
+    ins_right {
+        function()
+            return os.date("%H:%M", os.time())
+        end,
+        color = function()
+            local color = get_mode_color()
+            return { fg = color, gui = 'bold' }
+        end,
+        padding = { left = 1 },
+    }
+
+    -- Date
+    ins_right {
+        function()
+            return os.date("%d-%m-%Y", os.time())
+        end,
+        padding = { left = 2 },
+    }
+
     ins_right {
         function()
             return '▊'
         end,
         color = function()
-            return { fg = mode_color[vim.fn.mode()] }
+            local color = get_mode_color()
+            return { fg = color }
         end,
         padding = { left = 1 },
     }
