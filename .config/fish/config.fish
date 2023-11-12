@@ -1,3 +1,6 @@
+# Disable greeting
+set fish_greeting
+
 [ -f /usr/share/autojump/autojump.fish ]; and source /usr/share/autojump/autojump.fish
 
 # When chaning the working directory, change the cwd of neovim
@@ -26,12 +29,23 @@ function fish_prompt
   set -l ahead (_git_ahead)
   set -g whitespace ' '
 
+  set -l status_icon ""
+  if test -n "$IN_NIX_SHELL"
+    set status_icon ""
+  else
+  end
+
   if test $last_status = 0
-    set initial_indicator "$cyan◆"
-    set status_indicator "$cyan"
+    if test -n "$IN_NIX_SHELL"
+      set initial_indicator "$blue◆"
+      set status_indicator "$blue$status_icon"
+    else
+      set initial_indicator "$cyan◆"
+      set status_indicator "$cyan$status_icon"
+    end
   else
     set initial_indicator "$red◆ $last_status"
-    set status_indicator "$red"
+    set status_indicator "$red$status_icon"
   end
   set -l cwd $orange(basename (prompt_pwd))
 
