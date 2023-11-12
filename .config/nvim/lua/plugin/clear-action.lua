@@ -1,4 +1,7 @@
 local opts = {
+    signs = {
+        enable = false,
+    },
     popup = {
         border = "none",
     },
