@@ -68,6 +68,39 @@ local function config()
                 bg = palette.base4,
                 fg = palette.orange,
             },
+            NoiceCmdlineIcon = {
+                fg = palette.aqua,
+            },
+            NoiceCmdlineIconSearch = {
+                fg = palette.orange,
+            },
+            NoiceFormatConfirmDefault = {
+                fg = palette.orange,
+            },
+            NoiceFormatConfirm = {
+                fg = palette.white,
+            },
+            NoiceFormatProgressDone = {
+                bg = palette.orange,
+            },
+            NoiceFormatProgressTodo = {
+                bg = palette.base2,
+            },
+            NoiceLspProgressSpinner = {
+                bg = palette.base2,
+                fg = palette.orange,
+            },
+            NoiceLspProgressTitle = {
+                bg = palette.base2,
+                fg = palette.white,
+            },
+            NoiceLspProgressClient = {
+                bg = palette.base2,
+                fg = palette.orange,
+            },
+            NoiceMini = {
+                bg = palette.base2,
+            },
         }
     }
 
