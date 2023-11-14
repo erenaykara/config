@@ -73,13 +73,19 @@ local function config()
     }
 
     -- Inserts a component in lualine_c at left section
-    local function ins_left(component)
+    local function ins_left(component, both)
         table.insert(config_table.sections.lualine_c, component)
+        if both then
+            table.insert(config_table.inactive_sections.lualine_c, component)
+        end
     end
 
     -- Inserts a component in lualine_x ot right section
-    local function ins_right(component)
+    local function ins_right(component, both)
         table.insert(config_table.sections.lualine_x, component)
+        if both then
+            table.insert(config_table.inactive_sections.lualine_x, component)
+        end
     end
 
     -- auto change color according to neovims mode
@@ -134,7 +140,7 @@ local function config()
         end
     end
 
-    ins_left {
+    ins_left({
         function()
             return '▊'
         end,
@@ -143,9 +149,9 @@ local function config()
             return { fg = color }
         end,
         padding = { left = 0, right = 1 }, -- We don't need space before this
-    }
+    }, true)
 
-    ins_left {
+    ins_left({
         'filename',
         path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
         cond = conditions.buffer_not_empty,
@@ -153,17 +159,17 @@ local function config()
             local color = get_mode_color()
             return { fg = color, gui = 'bold' }
         end,
-    }
+    }, true)
 
-    ins_left {
+    ins_left({
         'location',
         color = function()
             local color = get_mode_color()
             return { fg = color, gui = 'bold' }
         end,
-    }
+    }, false)
 
-    ins_left {
+    ins_left({
         'diagnostics',
         sources = { 'nvim_diagnostic' },
         symbols = { error = ' ', warn = ' ', info = ' ' },
@@ -172,9 +178,9 @@ local function config()
             warn = { fg = colors.yellow },
             info = { fg = colors.yellow },
         },
-    }
+    }, false)
 
-    ins_left {
+    ins_left({
         function()
             local keymaps = vim.api.nvim_buf_get_keymap(0, "t")
             if is_keymap_present(keymaps, "<Esc>") then
@@ -188,35 +194,35 @@ local function config()
             local color = get_mode_color()
             return { fg = color, gui = 'bold' }
         end,
-    }
+    }, false)
 
     -- Add components to right sections
 
-    ins_right {
+    ins_right({
         get_node_type,
         icon = '󰔱',
         cond = conditions.treesitter_support,
-    }
+    }, false)
 
-    ins_right {
+    ins_right({
         'branch',
         icon = '',
-    }
+    }, true)
 
-    ins_right {
+    ins_right({
         'diff',
         -- Is it me or the symbol for modified us really weird
-        symbols = { added = ' ', modified = '柳 ', removed = ' ' },
+        symbols = { added = ' ', modified = ' ', removed = ' ' },
         diff_color = {
             added = { fg = colors.green },
             modified = { fg = colors.orange },
             removed = { fg = colors.red },
         },
         cond = conditions.hide_in_width,
-    }
+    }, false)
 
     -- Time
-    ins_right {
+    ins_right({
         function()
             return os.date("%H:%M", os.time())
         end,
@@ -225,17 +231,17 @@ local function config()
             return { fg = color, gui = 'bold' }
         end,
         padding = { left = 1 },
-    }
+    }, true)
 
     -- Date
-    ins_right {
+    ins_right({
         function()
             return os.date("%d-%m-%Y", os.time())
         end,
         padding = { left = 2 },
-    }
+    }, true)
 
-    ins_right {
+    ins_right({
         function()
             return '▊'
         end,
@@ -244,7 +250,7 @@ local function config()
             return { fg = color }
         end,
         padding = { left = 1 },
-    }
+    }, true)
 
     -- Now don't forget to initialize lualine
     lualine.setup(config_table)
