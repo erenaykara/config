@@ -1,7 +1,6 @@
 -- Extra bindings
 vim.keymap.set("n", "b", "i<cr><esc>", { desc = "Insert newline in normal mode" })
 vim.keymap.set("n", "B", "i<cr><esc>O<esc>", { desc = "Insert empty line in normal mode" })
-vim.keymap.set("n", "j", '"_deP', { desc = "Replace word without copying" })
 vim.keymap.set("n", "<C-q>", function() vim.api.nvim_command('let @/ = ""') end, { desc = "Clear search register" })
 vim.keymap.set("v", "sh", '"ay:s/<C-r>a/', { desc = "Substitute here" })
 vim.keymap.set("v", "sf", '"ay:%s/<C-r>a/', { desc = "Substitute in file" })
