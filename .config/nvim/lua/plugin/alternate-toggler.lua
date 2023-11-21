@@ -1,3 +1,10 @@
+local opts = {
+    alternates = {
+        yes = "no",
+        always = "never",
+    }
+}
+
 local keys = {
     { "ht", function() package.loaded["alternate-toggler"].toggleAlternate() end }
 }
@@ -5,5 +12,6 @@ local keys = {
 return {
     'rmagatti/alternate-toggler',
     config = true,
+    opts = opts,
     keys = keys,
 }
