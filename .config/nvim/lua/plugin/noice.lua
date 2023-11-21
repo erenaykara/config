@@ -36,7 +36,7 @@ local opts = {
 
 return {
     "folke/noice.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
+    dependencies = { 'nvim-treesitter/nvim-treesitter', "MunifTanjim/nui.nvim" },
     opts = opts,
     event = "VeryLazy",
 }
